@@ -1,0 +1,15 @@
+Django==5.2.4
+djangorestframework==3.16.1
+djangorestframework-simplejwt==5.5.1
+python-dotenv==1.2.1
+celery==5.5.3
+redis==7.0.1
+Pillow==12.0.0
+requests==2.32.5
+
+# Optional database drivers (uncomment if needed)
+# psycopg2-binary==2.9.10   # PostgreSQL
+# mysqlclient==2.2.6        # MySQL/MariaDB
+
+# Dev tooling (optional)
+# django-cors-headers==4.7.0
