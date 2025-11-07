@@ -91,10 +91,30 @@ def generate_invoice(request):
         created_by=request.user
     )
     
+    # Check for auto-payment
+    from apps.payments.utils import process_auto_payment
+    auto_payment_success, auto_payment_message, auto_payment_data = process_auto_payment(invoice, request.user)
+    
     serializer = InvoiceSerializer(invoice)
-    return Response({
+    response_data = {
         'success': True,
         'message': 'Invoice generated successfully',
         'data': serializer.data
-    }, status=status.HTTP_201_CREATED)
+    }
+    
+    if auto_payment_success:
+        response_data['auto_payment'] = {
+            'success': True,
+            'message': auto_payment_message,
+            'data': auto_payment_data
+        }
+        response_data['message'] = 'Invoice generated and auto-paid from wallet'
+    elif auto_payment_message and "does not have" not in auto_payment_message.lower():
+        response_data['auto_payment'] = {
+            'success': False,
+            'message': auto_payment_message,
+            'data': auto_payment_data
+        }
+    
+    return Response(response_data, status=status.HTTP_201_CREATED)
 

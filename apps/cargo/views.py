@@ -140,6 +140,7 @@ def cargo_update_status(request, pk):
     if new_status == 'arrived':
         from apps.invoices.models import Invoice
         from datetime import datetime, timedelta
+        from apps.payments.utils import process_auto_payment
         
         invoice = Invoice.objects.create(
             cargo=cargo,
@@ -149,6 +150,9 @@ def cargo_update_status(request, pk):
             status='pending',
             created_by=request.user
         )
+        
+        # Check for auto-payment
+        auto_payment_success, auto_payment_message, auto_payment_data = process_auto_payment(invoice, request.user)
     
     serializer = CargoSerializer(cargo)
     return Response({
