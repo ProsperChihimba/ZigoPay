@@ -34,6 +34,9 @@ urlpatterns = [
     path('api/invoices/', include('apps.invoices.urls')),
     path('api/payments/', include('apps.payments.urls')),
     path('api/notifications/', include('apps.notifications.urls')),
+    
+    # WhatsApp Bot
+    path('api/whatsapp/', include('apps.whatsapp.urls')),
 ]
 
 # Serve media files in development

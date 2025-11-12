@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'apps.invoices.apps.InvoicesConfig',
     'apps.payments.apps.PaymentsConfig',
     'apps.notifications.apps.NotificationsConfig',
+    'apps.whatsapp.apps.WhatsappConfig',
 ]
 
 MIDDLEWARE = [
@@ -199,6 +200,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SMS_API_KEY = os.getenv('SMS_API_KEY', 'dummy_sms_key')
 SMS_API_URL = os.getenv('SMS_API_URL', 'https://api.example.com/sms')
 
-# WhatsApp Configuration (Dummy)
-WHATSAPP_API_KEY = os.getenv('WHATSAPP_API_KEY', 'dummy_whatsapp_key')
-WHATSAPP_API_URL = os.getenv('WHATSAPP_API_URL', 'https://api.example.com/whatsapp')
+# WhatsApp Configuration
+WHATSAPP_TOKEN = os.getenv('WHATSAPP_TOKEN', 'EAAr1kvlgqhIBPZA0Mq7685iD5aEGm9A2TC5Xp2nVtc8ZCFA2v7vQcdZCg1O1MGpZCchvDwpFvBLOUxyYg7nNJLK84phJhOPw4Hp66vPLcpH1TCg4YyaN78pf8tUzN48rKBR5oeSNU5EbhNNsGw9wAg6KqEoA1ipFNgLZAOjWc9V6VDrhlsQoLHcEUqMST2USjKwZDZD')
+WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID', '537559402774394')
+WHATSAPP_BUSINESS_ACCOUNT_ID = os.getenv('WHATSAPP_BUSINESS_ACCOUNT_ID', '528995370286469')
+WHATSAPP_VERIFY_TOKEN = os.getenv('WHATSAPP_VERIFY_TOKEN', 'c2a49926-a81c-11ef-b864-0242ac120002')
+WHATSAPP_API_URL = 'https://graph.facebook.com/v18.0'
